@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme("colors.primary.400");
+    border-right-color: theme("colors.accent.500");
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme("colors.primary.500");
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+
+/* Date picker */
+.rdp {
+  --rdp-cell-size: 32px !important;
+  --rdp-accent-color: theme("colors.accent.500") !important;
+  --rdp-background-color: theme("colors.accent.100") !important;
+  margin: 0 !important;
+}
+
+/* Leaflet map */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+/* Price marker bubble */
+.price-marker {
+  background: #D38816;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.price-marker::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #D38816;
+  border-bottom: none;
+}
+.price-marker.selected {
+  background: #EB9C00;
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000 !important;
+}
+.price-marker.selected::after {
+  border-top-color: #EB9C00;
+}
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* POI markers */
+.poi-marker {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 2px solid white;
+}
+.poi-marker.selected {
+  transform: scale(1.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
