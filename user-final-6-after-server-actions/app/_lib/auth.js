@@ -16,7 +16,15 @@ const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
-      return !!auth?.user;
+      // 只保护 /account 路径
+      const isProtectedRoute = request.nextUrl.pathname.startsWith('/account');
+      const isLoggedIn = !!auth?.user;
+      
+      if (isProtectedRoute && !isLoggedIn) {
+        return false; // 重定向到登录页
+      }
+      
+      return true; // 允许访问
     },
     async signIn({ user, account, profile }) {
       try {
