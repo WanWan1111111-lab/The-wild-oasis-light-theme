@@ -187,7 +187,7 @@ export default async function Page() {
                 key={r.id}
                 className={`p-10 border-r border-primary-300 last:border-r-0 bg-primary-50 border-l-2 border-l-accent-400`}
               >
-                <div className="text-5xl text-accent-200 font-medium leading-none mb-4 select-none">"</div>
+                <div className="text-5xl text-accent-200 font-medium leading-none mb-4 select-none">&quot;</div>
                 <StarRating rating={r.rating} />
                 <p className="text-primary-700 text-sm mt-4 leading-relaxed line-clamp-5">
                   {r.comment}
